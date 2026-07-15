@@ -50,6 +50,26 @@ class App {
                 wiseSayings.remove(target)
 
                 println("${id}번 명언이 삭제되었습니다.")
+            } else if (rq.action == "수정"){
+                val id = rq.getParamValueAsInt("id", 0)
+
+                val target = wiseSayings.find { it.id == id }
+
+                if(target == null){
+                    println("${id}번 명언은 존재하지 않습니다.")
+                    continue
+                }
+
+                println("명언(기존) : ${target.content}")
+                print("명언 : ")
+                val newContent = readlnOrNull()!!.trim()
+
+                println("작가(기존) : ${target.author}")
+                print("작가 : ")
+                val newAuthor = readlnOrNull()!!.trim()
+
+                target.content = newContent
+                target.author = newAuthor
             }
         }
     }
